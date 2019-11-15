@@ -115,5 +115,10 @@ order by r.timestamp DESC
 
 -- Question 17
 
+SELECT m.title, l.imdb_Id
+from movie.movies m
+ LEFT JOIN movie.links l ON m.id = l.movie_id
+where m.genres like "%comedy%"  and m.title like "%2005%"
+
 
 
