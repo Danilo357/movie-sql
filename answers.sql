@@ -136,7 +136,42 @@ SELECT COUNT(rating), movie_id
 FROM movies.ratings
 WHERE ratings.movie_id = 260;
 
+-- question 21
+SELECT m.genres, count(m.genres) as "Total movies/genre"  FROM movies.movies m 
+group by m.genres;
 
+-- Question 22
+SELECT r.user_id, avg(r.rating) FROM movies.ratings r
+group by r.user_id;
+
+-- Question 23
+SELECT r.user_id, COUNT(r.rating) as ratingperson
+FROM  movies.ratings r
+group by r.user_id 
+order by ratingperson DESC
+LIMIT 1;
+
+-- question 24
+SELECT r.user_id, avg(r.rating) as "AVG ratings"	
+FROM movies.ratings r
+GROUP BY r.user_id
+ORDER BY ratings DESC
+LIMIT 1
+
+-- question 25
+SELECT r.user_id, avg(r.rating) as "AVG ratings", count(r.rating) as timesRated
+FROM movies.ratings r
+GROUP BY r.user_id
+having timesRated> 50
+ORDER BY AVG (timesRated) DESC
+LIMIT 1;
+
+-- question 26
+SELECT  m.title, AVG(r.rating) as avgRating
+FROM movies.ratings r
+left join movies.movies m on m.id=r.movie_id
+group by m.title
+having avgRating > 4;
 
 
 
