@@ -116,9 +116,27 @@ order by r.timestamp DESC
 -- Question 17
 
 SELECT m.title, l.imdb_Id
-from movie.movies m
- LEFT JOIN movie.links l ON m.id = l.movie_id
+from movies.movies m
+ LEFT JOIN movies.links l ON m.id = l.movie_id
 where m.genres like "%comedy%"  and m.title like "%2005%"
+
+-- Question 18
+SELECT title
+FROM movies.movies, movies.ratings
+where movies.id  != ratings.movie_id;
+
+-- Question 19
+SELECT m.title, AVG (r.rating)
+FROM movies.ratings r
+left join movies.movies m on m.id=r.movie_id
+group by m.title
+
+-- Question 20
+SELECT COUNT(rating), movie_id
+FROM movies.ratings
+WHERE ratings.movie_id = 260;
+
+
 
 
 
